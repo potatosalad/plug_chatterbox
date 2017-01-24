@@ -14,8 +14,8 @@ defmodule PlugChatterbox.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+    [applications: [:logger, :ranch, :chatterbox, :plug],
+     mod: {PlugChatterbox.Application, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +28,8 @@ defmodule PlugChatterbox.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:chatterbox, "~> 0.4.0"},
+     {:ranch, github: "ninenines/ranch", ref: "1.3.0", override: true, optional: true},
+     {:plug, "~> 1.3.0"}]
   end
 end
